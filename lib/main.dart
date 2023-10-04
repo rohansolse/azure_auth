@@ -1,4 +1,4 @@
-import 'package:azure_auth/azure_auth.dart';
+import 'package:azure_auth/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AzureAuth(title: 'AAD OAuth Home', navigatorKey: navigatorKey),
+      home: HomePage(title: 'AAD OAuth Home', navigatorKey: navigatorKey),
       navigatorKey: navigatorKey,
     );
   }

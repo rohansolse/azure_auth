@@ -1,28 +1,19 @@
 // ignore_for_file: use_build_context_synchronously, prefer_typing_uninitialized_variables
+import 'package:azure_auth/authorization.dart';
 import 'package:azure_auth/main.dart';
 import 'package:flutter/foundation.dart';
-import 'package:aad_oauth/aad_oauth.dart';
-import 'package:aad_oauth/model/config.dart';
-import 'package:azure_auth/constants.dart';
 import 'package:flutter/material.dart';
 
-class AzureAuth extends StatefulWidget {
-  const AzureAuth({super.key, required this.title, required this.navigatorKey});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key, required this.title, required this.navigatorKey});
   final String title;
   final navigatorKey;
   @override
-  State<AzureAuth> createState() => _AzureAuthState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _AzureAuthState extends State<AzureAuth> {
-  static final Config config = Config(
-    tenant: AzureConstants.tenentId,
-    clientId: AzureConstants.clientId,
-    scope: AzureConstants.scope,
-    navigatorKey: navigatorKey,
-    loader: const SizedBox(),
-  );
-  final AadOAuth oauth = AadOAuth(config);
+class _HomePageState extends State<HomePage> {
+  final oauth = authorization(navigatorKey);
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +77,6 @@ class _AzureAuthState extends State<AzureAuth> {
   }
 
   void login(bool redirect) async {
-    config.webUseRedirect = redirect;
     final result = await oauth.login();
     result.fold(
       (l) => showError(l.toString()),
