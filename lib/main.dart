@@ -1,3 +1,4 @@
+import 'package:azure_auth/constants.dart';
 import 'package:azure_auth/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AAD OAuth Demo',
+      title: AzureConstants.appTitle,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(title: 'AAD OAuth Home', navigatorKey: navigatorKey),
+      home: HomePage(title: AzureConstants.homeTitle, navigatorKey: navigatorKey),
       navigatorKey: navigatorKey,
     );
   }

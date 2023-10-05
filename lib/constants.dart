@@ -9,4 +9,6 @@ class AzureConstants {
   static const ok = 'Ok';
   static const loginWebRedirect = 'Login (web redirect)';
   static const azureAD = 'AzureAD OAuth';
+  static const appTitle = 'AAD OAuth Demo';
+  static const homeTitle = 'AAD OAuth Home';
 }

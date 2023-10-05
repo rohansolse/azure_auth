@@ -6,7 +6,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title, required this.navigatorKey});
+  const HomePage({
+    super.key,
+    required this.title,
+    required this.navigatorKey,
+  });
   final String title;
   final navigatorKey;
   @override
