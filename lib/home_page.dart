@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, prefer_typing_uninitialized_variables
 import 'package:azure_auth/authorization.dart';
+import 'package:azure_auth/constants.dart';
 import 'package:azure_auth/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           ListTile(
             title: Text(
-              'AzureAD OAuth',
+              AzureConstants.azureAD,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -39,19 +40,19 @@ class _HomePageState extends State<HomePage> {
           if (kIsWeb)
             ListTile(
               leading: const Icon(Icons.launch),
-              title: const Text('Login (web redirect)'),
+              title: const Text(AzureConstants.loginWebRedirect),
               onTap: () {
                 login(true);
               },
             ),
           ListTile(
             leading: const Icon(Icons.data_array),
-            title: const Text('HasCachedAccountInformation'),
+            title: const Text(AzureConstants.hasCachedAccountInformation),
             onTap: () => hasCachedAccountInformation(),
           ),
           ListTile(
             leading: const Icon(Icons.logout),
-            title: const Text('Logout'),
+            title: const Text(AzureConstants.logout),
             onTap: () {
               logout();
             },
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
   void showMessage(String text) {
     var alert = AlertDialog(content: Text(text), actions: <Widget>[
       TextButton(
-          child: const Text('Ok'),
+          child: const Text(AzureConstants.ok),
           onPressed: () {
             Navigator.pop(context);
           })
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage> {
     final result = await oauth.login();
     result.fold(
       (l) => showError(l.toString()),
-      (r) => showMessage('Logged in successfully, your access token: $r'),
+      (r) => showMessage('${AzureConstants.accessTokenText} $r'),
     );
     var accessToken = await oauth.getAccessToken();
     if (accessToken != null) {
@@ -94,13 +95,13 @@ class _HomePageState extends State<HomePage> {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('HasCachedAccountInformation: $hasCachedAccountInformation'),
+        content: Text('${AzureConstants.hasCachedAccountInformation}: $hasCachedAccountInformation'),
       ),
     );
   }
 
   void logout() async {
     await oauth.logout();
-    showMessage('Logged out');
+    showMessage(AzureConstants.loggedOut);
   }
 }
