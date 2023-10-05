@@ -18,7 +18,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final oauth = authorization(navigatorKey);
+  final oauth = authorization(
+    navigatorKey,
+    AzureConstants.tenentId,
+    AzureConstants.clientId,
+    AzureConstants.scope,
+  );
 
   @override
   Widget build(BuildContext context) {
