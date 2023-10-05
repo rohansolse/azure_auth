@@ -11,13 +11,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: AzureConstants.appTitle,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return SafeArea(
+      child: MaterialApp(
+        title: AzureConstants.appTitle,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: HomePage(title: AzureConstants.homeTitle, navigatorKey: navigatorKey),
+        navigatorKey: navigatorKey,
       ),
-      home: HomePage(title: AzureConstants.homeTitle, navigatorKey: navigatorKey),
-      navigatorKey: navigatorKey,
     );
   }
 }
